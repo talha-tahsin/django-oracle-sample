@@ -1,0 +1,264 @@
+{% extends "layouts/dashboard_master.html" %}
+{% load static %}
+
+{% block content %}
+
+  <style>
+    /* Add CSS transition for the fade-out effect */
+    #alertDiv {
+        transition: opacity 1s ease-out;
+    }
+    #alertDiv.hidden {
+        opacity: 0;
+    }
+  </style>
+
+  <!-- Content Header (Page header) -->
+  <div class="content-header" style="padding: 10px 20px 0px 20px;">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <!-- <h1 class="m-0" style="font-family: Serif;">Layer Map Color</h1> -->
+        </div><!-- /.col -->
+
+        <!-- <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard v1</li>
+          </ol>
+        </div> -->
+
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+
+      <div class="card card-primary">
+        <div class="card-header"><h3 class="card-title" style="font-family: Serif;">Add New Layer Map Color</h3></div>
+        
+        <div class="row"> 
+          <div class="col-md-6">
+            <input type="hidden" name="userName" id="userName" value="" />
+
+            <div class="row" style="margin-left: 20px;">
+              <div class="col-sm-4" style="margin: 20px 0px 10px 0px;text-align: left;"> 
+                <label style="font-family: Cambria;font-size: 15px;margin: 5px 0px 5px 0px;">
+                <span style="color: red;">★&nbsp;</span>Category Id</label></div>
+                <div class="col-sm-6" style="margin: 20px 0px 10px 0px;">
+                <input type="text" class="form-control resetTextValue" name="categoryId" id="categoryId" value="" style="border-radius: 5px;border: 2px solid #77c3e1" placeholder="Enter category id">
+              </div>
+            </div>
+
+            <div class="row" style="margin-left: 20px;">
+              <div class="col-sm-4" style="margin: 10px 0px 10px 0px;text-align: left;"> 
+                <label style="font-family: Cambria;font-size: 15px;margin: 5px 0px 5px 0px;">
+                <span style="color: red;">★&nbsp;</span>Category Name</label></div>
+                <div class="col-sm-6" style="margin: 10px 0px 10px 0px;">
+                  <input type="text" class="form-control resetTextValue" name="categoryName" id="categoryName" value="" style="border-radius: 5px;border: 2px solid #77c3e1" placeholder="Enter category name">
+              </div>
+            </div>
+
+            <div class="row" style="margin-left: 20px;">
+              <div class="col-sm-4" style="margin: 20px 0px 40px 0px;">
+                <button type="submit" class="btn btn-info" id="btn_reset_field" style="width: 100%;border-radius: 5px;color: black;">Reset All Field</button>
+              </div>
+              <div class="col-md-6" style="margin: 20px 0px 40px 0px;">
+                <button type="submit" class="btn btn-success" id="btn_save" style="width: 100%;border-radius: 5px;color: black;">Save New Layer Map Color</button>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md-6" style="margin-top: 20px;">
+            <div class="col-sm-6 box-shadow custom-card card hide" id="alertDiv" style="border-radius: 10px;">
+              <div class="alert text-center fade show p-3">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="fa fa-check-circle text-success" aria-hidden="true" style="margin-top: 30px;"></i>
+                <h5 class="mt-2 mb-1">Success !</h5>
+                <p class="mb-3 mb-3 tx-inverse" id="show_msg"></p>
+                <!-- <a class="btn ripple btn-success" id="btn_close" style="text-decoration: none;">Close</a> -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+    
+      </div> <!-- end card  -->
+
+    <!-- Add New :: -->
+    <div class="modal fade" id="myModal_add" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #001a33;">
+            <h5 class="modal-title" id="exampleModalLongTitle" style="color: white;">Add New Map Legend :</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+              <div class="row">
+                <div class="col-sm-4" style="margin: 10px 0px 10px 0px;text-align: left;"> 
+                  <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">
+                  <span style="color: red;">★&nbsp;</span>Category Id</label></div>
+                  <div class="col-sm-6" style="margin: 10px 0px 10px 0px;">
+                  <select class="custom-select form-control" name="n_catgry_id" id="n_catgry_id" >
+                  </select>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4" style="margin: 10px 0px 10px 0px;text-align: left;"> 
+                  <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">
+                  <span style="color: red;">★&nbsp;</span>Category Name</label></div>
+                  <div class="col-sm-6" style="margin: 10px 0px 10px 0px;">
+                  <input type="text" class="form-control" name="n_catgry_name" id="n_catgry_name" value="" style="border-radius: 5px;border: 2px solid #77c3e1" placeholder="Please fill up this field..">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4" style="margin: 10px 0px 10px 0px;text-align: left;"> 
+                  <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">
+                  <span style="color: red;">★&nbsp;</span>Display Header</label></div>
+                  <div class="col-sm-6" style="margin: 10px 0px 10px 0px;">
+                  <input type="text" class="form-control" name="n_header" id="n_header" value="" style="border-radius: 5px;border: 2px solid #77c3e1" placeholder="Please fill up this field..">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4" style="margin: 10px 0px 10px 0px;text-align: left;"> 
+                  <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">
+                  <span style="color: red;">★&nbsp;</span>Legend Color</label></div>
+                  <div class="col-sm-6" style="margin: 10px 0px 10px 0px;">
+                  <input type="text" class="form-control" name="n_legend_color" id="n_legend_color" value="" style="border-radius: 5px;border: 2px solid #77c3e1" placeholder="Please fill up this field..">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4" style="margin: 10px 0px 10px 0px;text-align: left;"> 
+                  <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">
+                  <span style="color: red;">★&nbsp;</span>Legend Value</label></div>
+                  <div class="col-sm-6" style="margin: 10px 0px 10px 0px;">
+                  <input type="text" class="form-control" name="n_legend_value" id="n_legend_value" value="" style="border-radius: 5px;border: 2px solid #77c3e1" placeholder="Please fill up this field..">
+                </div>
+              </div>
+
+              
+          </div> <!-- /end modal body -->
+
+          <div class="modal-footer">
+            <button type="button" id="btn_close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" id="btn_save_new" class="btn btn-primary">Save Changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit :: -->
+    <div class="modal fade" id="myModal_edit" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #001a33;">
+            <h5 class="modal-title" id="exampleModalLongTitle" style="color: white;">Edit Map Legend Info :</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <input type="hidden" name="row_id" id="row_id" value=""/>
+              <div class="row">
+                <!-- <div class="col-sm-1"></div>'; -->
+                <div class="col-sm-4" style="margin: 10px 0px 10px 0px;text-align: left;"> 
+                  <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">
+                  <span style="color: red;">★&nbsp;</span>Category Name</label></div>
+                  <div class="col-sm-6" style="margin: 10px 0px 10px 0px;">
+                  <input type="text" class="form-control" name="m_catgry_name" id="m_catgry_name" value="" style="border-radius: 5px;border: 2px solid #77c3e1">
+                </div>
+              </div>
+
+              <div class="row">
+                <!-- <div class="col-sm-1"></div>'; -->
+                <div class="col-sm-4" style="margin: 10px 0px 10px 0px;text-align: left;"> 
+                  <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">
+                  <span style="color: red;">★&nbsp;</span>Display Header</label></div>
+                  <div class="col-sm-6" style="margin: 10px 0px 10px 0px;">
+                  <input type="text" class="form-control" name="m_header" id="m_header" value="" style="border-radius: 5px;border: 2px solid #77c3e1" >
+                </div>
+              </div>
+
+              <div class="row">
+                <!-- <div class="col-sm-1"></div>'; -->
+                <div class="col-sm-4" style="margin: 10px 0px 10px 0px;text-align: left;"> 
+                  <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">
+                  <span style="color: red;">★&nbsp;</span>Legend Color</label></div>
+                  <div class="col-sm-6" style="margin: 10px 0px 10px 0px;">
+                  <input type="text" class="form-control" name="m_legend_color" id="m_legend_color" value="" style="border-radius: 5px;border: 2px solid #77c3e1" >
+                </div>
+              </div>
+
+              <div class="row">
+                <!-- <div class="col-sm-1"></div>'; -->
+                <div class="col-sm-4" style="margin: 10px 0px 10px 0px;text-align: left;"> 
+                  <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">
+                  <span style="color: red;">★&nbsp;</span>Legend Value</label></div>
+                  <div class="col-sm-6" style="margin: 10px 0px 10px 0px;">
+                  <input type="text" class="form-control" name="m_legend_value" id="m_legend_value" value="" style="border-radius: 5px;border: 2px solid #77c3e1" >
+                </div>
+              </div>
+
+              
+          </div> <!-- /end modal body -->
+
+          <div class="modal-footer">
+            <button type="button" id="btn_close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" id="btn_save_changes" class="btn btn-primary">Save Changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popup Confirmation Message -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Message</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <h5 id="success_msg"><h5>
+            <h5 id="error_msg"><h5>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="btn_close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+       
+{% endblock content %}
+
+
+{% block current_page_scripts %}
+
+<script src="{% static 'app/scripts/admin/categoryType.js' %}"></script>
+
+
+{% endblock current_page_scripts %}

@@ -1,0 +1,189 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link type="text/css" rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link type="text/css" rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+        
+    </head>
+
+    <body>
+        
+    <main class="main-content mt-0 ps">
+      <section>
+        <div class="container">
+          <div class="row justify-content-center align-items-center vh-100">
+            <div class="row">
+              <div class="col-xl-5 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
+              
+                <div class="row d-flex justify-content-center">
+                  <div class="text-center logo">
+                    <img src="{% static 'dist/img/111.png' %}" alt="" height="60" width="60">
+                  </div>
+                  <div class="text-center mt-4 name">
+                    <h3>Login</h3>
+                  </div>
+
+                  <!-- <form method="post" class="p-3 mt-3"> -->
+
+                  <div class="row">
+                      <div class="col-md-8 mx-auto mb-3" style="margin: 0px 0px 10px 0px;">
+                      <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">
+                      <span style="color: red;">★&nbsp;</span>User Name</label>
+                      <input type="text" id="user_name" name="user_name" class="form-control" value="" placeholder="Enter user name" style="border-radius: 20px;border: 2px solid #52C2EE;padding: 5px 20px 8px 20px;" >
+                    </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-8 mx-auto mb-3" style="margin: 10px 0px 10px 0px;">
+                      <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">
+                      <span style="color: red;">★&nbsp;</span>Password</label>
+                      <input type="password" id="password" name="password" class="form-control" value="" placeholder="Enter password" style="border-radius: 20px;border: 2px solid #52C2EE;padding: 5px 20px 8px 20px" >
+                    </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-8 mx-auto mb-3" style="margin: 10px 0px 10px 0px;">
+                      <input class="form-check-input" style="margin: 10px 0px 0px 10px;" type="checkbox" value="" id="remember" checked="checked" />
+                      <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">Remember me</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-8 mx-auto" style="margin: 10px 0px 10px 0px;">
+                      <button type="submit" id="btn_save" class="btn btn-primary" style="border-radius: 20px;width: 100%">Submit</button>
+                  </div>
+
+                  <div class="text-center pt-0 px-lg-2 px-1 mt-3">
+                    <p class="mb-4 text-sm mx-auto">Don't have an account?
+                    <a href="{% url 'signup' %}" class="text-primary text-gradient font-weight-bold nav-link">Sign up</a>
+                    </p>
+                  </div>
+                  
+                  </div> 
+                  
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
+            <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg');
+                    background-size: cover;border-radius: 15px;">
+              <span class="mask bg-gradient-primary opacity-6"></span>
+              <h4 class="mt-5 text-white font-weight-bolder position-relative">"Attention is the new currency"</h4>
+              <p class="text-white position-relative">The more effortless the writing looks, the more effort the writer actually put into the process.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+          <!-- Popup Message Modal -->
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Message</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+                  <h5 id="success_msg"><h5>
+                  <h5 id="error_msg"><h5>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" id="btn_close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <!-- jQuery -->
+        <script src="{% static 'jQuery/jquery-3.6.0.min.js' %}"></script>
+        <!-- bootstrap -->
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+<script>
+
+  document.title = 'login';
+      
+    $(document).ready(function () {
+  
+      console.log("developed by talha || date: Mar-2024");
+  
+      var userNm = $('#userName').val();
+      var token = $("meta[name='csrf-token']").attr("content");
+  
+  
+    });
+
+    $(document).on('click', '#btn_save', function () {
+
+      // event.preventDefault();
+      var csrftoken = $("meta[name='csrf-token']").attr("content");
+
+      var user_name = $('#user_name').val();
+      var password = $('#password').val();
+
+      send_data = {
+          'user_name' : user_name,
+          'password' : password,
+      };
+
+      console.log(csrftoken, send_data);
+
+      // clear model message value for every ajax call provide single accurate message
+      $('#success_msg').html('');
+      $('#error_msg').html('');
+
+      $.ajax({
+          type: "POST",
+          url: "/user-login/",
+          headers: { "X-CSRFToken": csrftoken },
+          data: { 'dataToSend' : JSON.stringify(send_data) },
+          dataType: "json",
+          cache: false,
+          success: function (data) {
+              console.log(data);
+              if(data.status) {
+                // console.log(data.message);
+                window.location.href = '/dashboard';
+                $('.resetInputField').val('');
+                $('.resetSelectboxField').val('').change();
+              }
+              else {
+                  $('#myModal').modal({backdrop : 'static', keyboard : false});
+                  $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+              }
+              
+          },
+          error: function(xhr, ajaxOptions, thrownError) {
+              console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+          }
+      });
+
+    });
+    
+</script>
+       
+
+    </body>
+</html>

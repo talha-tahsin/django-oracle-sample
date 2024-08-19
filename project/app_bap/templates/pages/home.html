@@ -1,0 +1,912 @@
+{% extends "layouts/master.html" %}
+{% load static %}
+{% static "" as baseUrl %}
+
+{% block content %}
+
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<!-- Owl-carousel css-->
+<link href="{% static 'assets/plugins/owl-carousel/owl.carousel.css' %}" rel="stylesheet" />
+
+<!-- Multislider css -->
+<link href="{% static 'assets/plugins/multislider/multislider.css' %}" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
+
+<!-- HighCharts -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<style>
+    .HeadColor {
+        color: #007e4f;   /*  #019997;    #0090bb; */
+    }
+
+    .card-text-border h1 {
+        color: #0093db !important;
+    }
+
+    .custom-btn:hover {
+        background-color: #007bff;
+        color: #ffffff;
+    }
+
+    .render {
+        transition: all 0.6s ease;
+    }
+
+    /* .render:hover {
+        color: #fff !important;
+        margin-top: -2px;
+        background-color: #007e4f; //// #019997; #3D93AE; #0090bb; ////
+        border: 1px solid #003e21 !important;
+        box-shadow: 0 0px 1px 0px rgba(0, 0, 0, 0.66);        
+    }
+
+    .render:hover .HeadColor {
+        color: #fff !important;
+    } */
+
+    .carousel-caption {
+        background-color: #000;
+        opacity: 0.4;
+        left:0;
+        right:0;
+        width: 100%;
+    }
+
+
+
+
+    @media (max-width: 991.98px) {
+        .cardCarousel {
+            margin: 70px 15px 20px 15px !important;
+        }
+
+        .cardBodyCarousel {
+            padding: 0px !important;
+        }
+
+        .banner-label {
+            color: darkgreen;
+            text-align: left;
+            font-size: 1.5rem;
+        }
+    }
+
+
+    /* <!-- HighCharts Style --> */
+    .highcharts-figure,
+    .highcharts-data-table table {
+        min-width: 320px;
+        max-width: 660px;
+        margin: 1em auto;
+    }
+
+    .highcharts-data-table table {
+        font-family: Verdana, sans-serif;
+        border-collapse: collapse;
+        border: 1px solid #ebebeb;
+        margin: 10px auto;
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .highcharts-data-table caption {
+        padding: 1em 0;
+        font-size: 1.2em;
+        color: #555;
+    }
+
+    .highcharts-data-table th {
+        font-weight: 600;
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table td,
+    .highcharts-data-table th,
+    .highcharts-data-table caption {
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table thead tr,
+    .highcharts-data-table tr:nth-child(even) {
+        background: #f8f8f8;
+    }
+
+    .highcharts-data-table tr:hover {
+        background: #f1f7ff;
+    }
+
+    .highcharts-credits {
+        display: none;
+    }
+    /* <!-- HighCharts Style --> */
+
+</style>
+
+
+<!--Carousel Row-->
+<div class="row row-sm">
+    <div class="col-md-12">
+
+        <div class="card custom-card cardCarousel">
+            <div class="card-body cardBodyCarousel h-100" style="padding: 0;">
+                <div class="carousel slide carousel-fade" data-bs-ride="carousel" id="carouselExample5">
+					<ol class="carousel-indicators">
+						<li class="active" data-bs-slide-to="0" data-bs-target="#carouselExample5"></li>
+						<li data-bs-slide-to="1" data-bs-target="#carouselExample5"></li>
+						<li data-bs-slide-to="2" data-bs-target="#carouselExample5"></li>
+                        <li data-bs-slide-to="3" data-bs-target="#carouselExample5"></li>
+                        <li data-bs-slide-to="4" data-bs-target="#carouselExample5"></li>
+                        <li data-bs-slide-to="5" data-bs-target="#carouselExample5"></li>
+                        <li data-bs-slide-to="6" data-bs-target="#carouselExample5"></li>
+					</ol>
+					<div class="carousel-inner bg-dark">
+						<div class="carousel-item active">
+							<img alt="img" class="d-block w-100" src="{% static 'images/slideimages/03.jpg' %}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Keokradong Bandarban</h5>
+                            </div>
+						</div>
+						<div class="carousel-item">
+							<img alt="img" class="d-block w-100" src="{% static 'images/slideimages/WShed1.jpg' %}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Second Chittagong Hill Tracts Rural Development Project in Bangladesh with support from ADB</h5>
+                            </div>
+						</div>
+						<div class="carousel-item">
+							<img alt="img" class="d-block w-100" src="{% static 'images/slideimages/WShed2.jpg' %}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Chittagong Hill Tracts</h5>
+                            </div>
+						</div>
+                        <div class="carousel-item">
+                            <img alt="img" class="d-block w-100" src="{% static 'images/slideimages/WShed3.jpg' %}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Bandarbans Hill Tracts</h5>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img alt="img" class="d-block w-100" src="{% static 'images/slideimages/WShed5.jpg' %}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Debotakhum, Bandarban</h5>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img alt="img" class="d-block w-100" src="{% static 'images/slideimages/WShed6.jpg' %}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Amiakhum Falls, Bandarban</h5>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img alt="img" class="d-block w-100" src="{% static 'images/slideimages/WShed4.jpg' %}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Richhang Waterfall, Khagrachari</h5>
+                            </div>
+                        </div>
+					</div>
+				</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="main-container container">
+
+    <div class="row row-sm">
+        <div class="col-sm-12 col-lg-12 col-xl-12">
+            <div class="card custom-card">
+                <div class="border-bottom-0 pb-0 pt-3">
+                    <label class="main-content-label" style="padding-left: 15px;">About the WMIS</label>
+                </div>
+                <div class="card-body">
+                    <div class="row row-sm">
+                        <div class="col-md-12">
+                            <label style="text-align:justify; font-weight: 400; font-size: 11pt;">
+                                Watershed Management Information System (WMIS) of the
+                                Chittagong Hill Tracts Area aims at facilitating informed decision making
+                                at policy level for integrated management of CHT watersheds, agro-
+                                ecological landscape restoration as nature-based solutions for climate
+                                change adaptation and livelihoods improvement of indigenous
+                                communities. WMIS will further facilitate to monitor the watershed
+                                health rejuvenation and track the resilience building among indigenous
+                                communities against climate change.
+                                <!-- A river is generally a natural watercourse that runs perennially or seasonally from definite sources (e.g. hills, rivers, waterbodies), with defined banks, contributes to the water and sediment budget of the basin/catchment, and discharges into an outfall (e.g. rivers, waterbodies, Bay of Bengal). A socially and historically recognized watercourse will also be considered as a river. </label> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Counting Row-->
+    <div class="row row-sm">
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl">
+            <!-- <a id="amodalmajor" title="Information of Major Rivers" data-bs-target="#modalmajor" data-bs-toggle="modal" href="#"> -->
+                <div class="card custom-card render">
+                    <div class="card-body">
+                        <div class="card-item">
+                            <div class="card-item-title text-center mb-2">
+                                <span class="HeadColor tx-15 font-weight-bold mb-1">No. of Watersheds</span>
+                            </div>
+                            <div class="text-center">
+                                <h2 class="font-weight-bold HeadColor">9</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- </a> -->
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl">
+            <!-- <a id="amodaltransboundary" title="Information of Transboundary Rivers." data-bs-target="#modalmajor" data-bs-toggle="modal" href="#"> -->
+                <div class="card custom-card render">
+                    <div class="card-body">
+                        <div class="card-item">
+                            <div class="card-item-title text-center mb-2">
+                                <span class="HeadColor tx-15 font-weight-bold mb-1">No. of Beneficiary Para</span>
+                            </div>
+                            <div class="text-center">
+                                <!--   @(ViewBag.Tot_TransRiver + 2)-->
+                                <h2 class="font-weight-bold HeadColor">180+</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- </a> -->
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl">
+            <!-- <a id="amodalmedium" title="Information of Medium Rivers." data-bs-target="#modalmajor" data-bs-toggle="modal" href="#"> -->
+                <div class="card custom-card render">
+                    <div class="card-body">
+                        <div class="card-item">
+                            <div class="card-item-title text-center mb-2">
+                                <span class="HeadColor tx-15 font-weight-bold mb-1">Total Population</span>
+                            </div>
+                            <div class="text-center">
+                                <h2 class="font-weight-bold HeadColor">45000+</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- </a> -->
+        </div>
+
+
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl">
+            <!-- <a id="amodalminor" title="Information of Small Rivers." data-bs-target="#modalmajor" data-bs-toggle="modal" href="#"> -->
+                <div class="card custom-card render">
+                    <div class="card-body">
+                        <div class="card-item">
+                            <div class="card-item-title text-center mb-2">
+                                <span class="HeadColor tx-15 font-weight-bold mb-1">Total Water Sources</span>
+                            </div>
+                            <div class="text-center">
+                                <h2 class="font-weight-bold HeadColor">150</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- </a> -->
+        </div>
+
+
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl">
+            <!-- <a id="amodaltotalrivers" title="Information of  Rivers" data-bs-target="#modalmajor" data-bs-toggle="modal" href="#"> -->
+                <div class="card custom-card render">
+                    <div class="card-body">
+                        <div class="card-item">
+                            <div class="card-item-title text-center mb-2">
+                                <span class="HeadColor tx-15 font-weight-bold mb-1">No. of Ethnicity</span>
+                            </div>
+                            <div class="text-center">
+                                <h2 class="font-weight-bold HeadColor">5</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- </a> -->
+        </div>
+
+    </div>
+    <!--End row-->
+
+
+
+    <!-- ROW-2 OPEN --- Demonstration Activities -->
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="border-bottom-0 pb-0 pt-3">
+                    <label class="main-content-label" style="padding-left: 4px;">Demonstration Activities</label>
+                    <!-- <label class="main-content-label" style="padding-left: 15px;">Key Features of the WMIS</label>                    -->
+                </div>
+                <!-- <h4 class="text-center fw-semibold landing-card-header">Features</h4>
+                <span class="landing-title"></span> -->
+                <!-- <h2 class="fw-semibold text-center">Spruha Main Features</h2> -->
+                <!-- <p class="text-default mb-5 text-center">The Spruha admin template comes with
+                    ready-to-use features that are completely easy-to-use for any user, even for
+                    a beginner.</p> -->
+
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <!-- <a href="{% url 'ws_activity' %}"> -->
+                            <a href="#">
+                                <div class="card features main-features main-features-1 wow fadeInUp reveal revealleft">
+                                    <div class="card-body">
+                                        <div class="counter-body-2">
+                                            <div class="bg-img mb-2 text-left hexagon-wrapper">                                                
+                                                <div class="counter-icon mx-auto">
+                                                    <img class="wd-100" src="{% static 'images/demo_activities/agro-forestry.png' %}">
+                                                    <!-- <i class="fe fe-package text-white"></i> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left counter-body" style="min-height: 90px;">
+                                            <h5>Community based agro-forestry</h5>
+                                            <!-- <p class="mb-0">Spruha has a unique design that you cannot compare with any other templates. It has unique Design</p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#">
+                                <div class="card features main-features main-features-2 wow fadeInUp reveal revealleft">
+                                    <div class="card-body">
+                                        <div class="counter-body-2">
+                                            <div class="bg-img mb-2 text-left hexagon-wrapper">
+                                                <div class="counter-icon mx-auto">
+                                                    <img class="wd-100" src="{% static 'images/demo_activities/climate-change.png' %}">
+                                                    <!-- <i class="fe fe-code text-white"></i> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left counter-body" style="min-height: 90px;">
+                                            <!-- <h4>Quality &amp; Clean Code</h4> -->
+                                            <h5>Community based climate change risk and adaptation assessment</h5>                                            
+                                            <!-- <p class="mb-0">The Spruha admin code is maintained very cleanly and well-structured.</p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#">
+                                <div class="card features main-features main-features-3 wow fadeInUp reveal revealleft">
+                                    <div class="card-body">
+                                        <div class="counter-body-2">
+                                            <div class="bg-img mb-2 text-left hexagon-wrapper">
+                                                <div class="counter-icon mx-auto">
+                                                    <img class="wd-100" src="{% static 'images/demo_activities/waterhed-health.png' %}">
+                                                    <!-- <i class="fe fe-layers text-white"></i> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left counter-body" style="min-height: 90px;">
+                                            <h5>Watershed health monitoring using drones</h5>
+                                            <!-- <p class="mb-0">We included multiple demos, preview video, and screen shots to give a quick overview of our template.</p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#">
+                                <div class="card features main-features main-features-5 wow fadeInUp reveal revealleft">
+                                    <div class="card-body">
+                                        <div class="counter-body-2">
+                                            <div class="bg-img mb-2 text-left hexagon-wrapper">
+                                                <div class="counter-icon mx-auto">
+                                                    <img class="wd-100" src="{% static 'images/demo_activities/participatory.png' %}">
+                                                    <!-- <i class="fe fe-file text-white"></i> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left counter-body" style="min-height: 90px;">
+                                            <h5>Participatory climate resilience tracking</h5>
+                                            <!-- <p class="mb-0">The most advanced "User Pages" are included in this template, like registration, profile, and log-in pages.</p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#">
+                                <div class="card features main-features main-features-4 wow fadeInUp reveal revealleft">
+                                    <div class="card-body">
+                                        <div class="counter-body-2">
+                                            <div class="bg-img mb-2 text-left hexagon-wrapper">
+                                                <div class="counter-icon mx-auto">
+                                                    <img class="wd-100" src="{% static 'images/demo_activities/agro-nursery.png' %}">
+                                                    <!-- <i class="fe fe-book-open text-white"></i> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left counter-body" style="min-height: 90px;">
+                                            <h5>Agro-forestry nursery development</h5>
+                                            <!-- <p class="mb-0">The documentation provides clear-cut material and is instructed with such a way that every user can understand.</p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#">
+                                <div class="card features main-features main-features-6 wow fadeInUp reveal revealleft">
+                                    <div class="card-body">
+                                        <div class="counter-body-2">
+                                            <div class="bg-img mb-2 text-left hexagon-wrapper">
+                                                <div class="counter-icon mx-auto">
+                                                    <img class="wd-100" src="{% static 'images/demo_activities/native.png' %}">
+                                                    <!-- <i class="fe fe-aperture text-white"></i> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left counter-body" style="min-height: 90px;">
+                                            <h5>Native regenerative tree plantations</h5>
+                                            <!-- <p class="mb-0">Modern widgets are included in this template. Please check out the best option that suits for your projects.</p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border-bottom-0 p-0 pt-3">
+                <label class="main-content-label">News/Events</label>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="card custom-card p-0">
+                        <!-- <div class="card-header">
+                            <h6 class="main-content-label">Trending Posts</h6>
+                        </div> -->
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li class="media d-block d-sm-flex">                                    
+                                    <img alt="img" class="wd-100p wd-sm-100  mg-sm-r-20 mg-b-20 mg-sm-b-0" src="{% static 'assets/img/media/6.jpg' %}">
+                                    <div class="media-body my-auto">
+                                        <a href="#">
+                                            <p class="mb-0 font-weight-bold fs-15">Inception of Climate Resilient Livelihood Improvement and Watershed Management...</p>
+                                        </a>
+                                        <p class="mb-0 fs-11 text-muted">1 days ago</p>
+                                    </div>
+                                </li>
+                                <li class="media d-block d-sm-flex mg-t-25">
+                                    <img alt="img" class="wd-100p wd-sm-100  mg-sm-r-20 mg-b-20 mg-sm-b-0" src="{% static 'assets/img/media/7.jpg' %}">
+                                    <div class="media-body my-auto">
+                                        <a href="#">
+                                            <p class="mb-0 font-weight-bold fs-15">Launch of Watershed Management Information System (WMIS) for Chittagong...</p>
+                                        </a>
+                                        <p class="mb-0 fs-11 text-muted">2 days ago</p>
+                                    </div>
+                                </li>
+                                <li class="media d-block d-sm-flex mg-t-25">
+                                    <img alt="img" class="wd-100p wd-sm-100  mg-sm-r-20 mg-b-20 mg-sm-b-0" src="{% static 'assets/img/media/8.jpg' %}">
+                                    <div class="media-body my-auto">
+                                        <a href="#">
+                                            <p class="mb-0 font-weight-bold fs-15">Final workshop of ADB TA REG 6539 Investing in Climate Change Adaptation...</p>
+                                        </a>
+                                        <p class="mb-0 fs-11 text-muted">2 days ago</p>
+                                    </div>
+                                </li>
+                                <li class="media d-block d-sm-flex mg-t-25">
+                                    <img alt="img" class="wd-100p wd-sm-100  mg-sm-r-20 mg-b-20 mg-sm-b-0" src="{% static 'assets/img/media/4.jpg' %}">
+                                    <div class="media-body my-auto">
+                                        <a href="#">
+                                            <p class="mb-0 font-weight-bold fs-15">Demonstration of drone-based watershed health monitoring by CEGIS and ADB in...</p>
+                                        </a>
+                                        <p class="mb-0 fs-11 text-muted">4 days ago</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-header pt-0">
+                            <a href="{% url 'news_events_list' %}"><h6>See More >></h6></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ROW-2 CLOSED -->
+
+    
+    <!-- Success Stories -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card custom-card">
+                <div class="card-body h-100">
+                    <div>
+                        <label class="main-content-label mb-3">Success Stories</label>
+                        <!-- <h6 class="main-content-label mb-1">Success Stories</h6> -->
+                        <!-- <p class="text-muted card-sub-title">Activities are shown here in a slideshow that specializes more than one slide at a time. There's no need to find messy CSS and JS work arounds for other single-slide solutions. Multislider allows the developer to focus fully on each individual slide as it's own component, and then displays as many slides as you decide in a manner that is fluid, consistent, and dymanic.</p> -->
+                    </div>
+                    
+                    <div id="owl-demo2" class="owl-carousel owl-carousel-icons2">
+                        <div class="item">
+                            <div class="card">
+                                <div class="card-body user-card p-0">
+                                    <div class="overflow-hidden custom-card mb-0">
+                                        <img alt="Image" class="img-fluid b-img" src="{% static 'images/success_stories/irrigation.png' %}">
+                                        <div class="card-body">
+                                            <h6>Solar Irrigation Flourishing Agriculture at Gilachhari</h6>
+                                            <!-- <p class="mb-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                                            <a href="#" class="btn ripple btn-success btn-sm mt-3">View Story</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card">
+                                <div class="card-body user-card p-0">
+                                    <div class="overflow-hidden custom-card mb-0">
+                                        <img alt="Image" class="img-fluid b-img" src="{% static 'images/success_stories/Proshanto-chakma.png' %}">
+                                        <div class="card-body">
+                                            <h6>Agro-forestry Improves Life of Proshanto Chakma in Dighinala</h6>
+                                            <!-- <p class="mb-0">The Spruha admin code is maintained very cleanly and well-structured with proper comments.</p> -->
+                                            <a href="#" class="btn ripple btn-success btn-sm mt-3">View Story</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card">
+                                <div class="card-body user-card p-0">
+                                    <div class="overflow-hidden custom-card mb-0">
+                                        <img alt="Image" class="img-fluid b-img" src="{% static 'images/success_stories/broom-grass.png' %}">
+                                        <div class="card-body">
+                                            <h6>Broom Grass based Industries Expanding </h6>
+                                            <!-- <p class="mb-0">We included multiple demos, preview video, and screen shots to give a quick overview of our template.</p> -->
+                                            <a href="#" class="btn ripple btn-success btn-sm mt-3">View Story</a>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card">
+                                <div class="card-body user-card p-0">
+                                    <div class="overflow-hidden custom-card mb-0">
+                                        <img alt="Image" class="img-fluid b-img" src="{% static 'images/success_stories/native-species.png' %}">
+                                        <div class="card-body">
+                                            <h6>Native Species Rejuvenates Watershed Health and Landscape</h6>
+                                            <!-- <p class="mb-0">The most advanced "User Pages" are included in this template, like registration, profile, and log-in pages.</p> -->
+                                            <a href="#" class="btn ripple btn-success btn-sm mt-3">View Story</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card">
+                                <div class="card-body user-card p-0">
+                                    <div class="overflow-hidden custom-card mb-0">
+                                        <img alt="Image" class="img-fluid b-img" src="{% static 'images/success_stories/water-reservoir.png' %}">
+                                        <div class="card-body">
+                                            <h6>Water Reservoir for Combating Drought and Providing Irrigation</h6>
+                                            <!-- <p class="mb-0">The documentation provides clear-cut material and is instructed with such a way that every user can understand.</p> -->
+                                            <a href="#" class="btn ripple btn-success btn-sm mt-3">View Story</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="item">
+                            <div class="card">
+                                <div class="card-body user-card p-0">
+                                    <div class="overflow-hidden custom-card mb-0">
+                                        <img alt="Image" class="img-fluid b-img" src="{% static 'assets/img/media/1.jpg' %}">
+                                        <div class="card-body">
+                                            <h4 class="fw-bold">Modern UI Widgets</h4>
+                                            <-- <p class="mb-0">Modern widgets are included in this template. Please check out the best option that suits for your projects.</p> --///
+                                            <a href="#" class="btn ripple btn-success btn-sm mt-3">View Story</a>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>                                                 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 d-none">
+            <div class="card custom-card">
+                <div class="card-body h-100">
+                    <div>
+                        <h6 class="main-content-label mb-1">Demonstration Activities</h6>
+                        <p class="text-muted card-sub-title">Activities are shown here in a slideshow that specializes more than one slide at a time. There's no need to find messy CSS and JS work arounds for other single-slide solutions. Multislider allows the developer to focus fully on each individual slide as it's own component, and then displays as many slides as you decide in a manner that is fluid, consistent, and dymanic.</p>
+                    </div>
+                    <div id="basicSlider">
+                        <div class="MS-content owl-carousel owl-loaded owl-drag">
+                            <div class="item">
+                                1
+                                <a href="#" target="_blank"> <img src="{% static 'assets/img/media/1.jpg' %}" alt="" /> </a>
+                            </div>
+                            <div class="item">
+                                2
+                                <a href="#" target="_blank"> <img src="{% static 'assets/img/media/2.jpg' %}" alt="" /> </a>
+                            </div>
+                            <div class="item">
+                                3
+                                <a href="#" target="_blank"> <img src="{% static 'assets/img/media/3.jpg' %}" alt="" /> </a>
+                            </div>
+                            <div class="item">
+                                4
+                                <a href="#" target="_blank"> <img src="{% static 'assets/img/media/4.jpg' %}" alt="" /> </a>
+                            </div>
+                            <div class="item">
+                                5
+                                <a href="#" target="_blank"> <img src="{% static 'assets/img/media/5.jpg' %}" alt="" /> </a>
+                            </div>
+                            <div class="item">
+                                6
+                                <a href="#" target="_blank"> <img src="{% static 'assets/img/media/6.jpg' %}" alt="" /> </a>
+                            </div>
+                            <div class="item">
+                                7
+                                <a href="#" target="_blank"> <img src="{% static 'assets/img/media/7.jpg' %}" alt="" /> </a>
+                            </div>
+                            <div class="item">
+                                8
+                                <a href="#" target="_blank"> <img src="{% static 'assets/img/media/8.jpg' %}" alt="" /> </a>
+                            </div>
+                            <div class="item">
+                                9
+                                <a href="#" target="_blank"> <img src="{% static 'assets/img/media/9.jpg' %}" alt="" /> </a>
+                            </div>
+                            <div class="item">
+                                10
+                                <a href="#" target="_blank"> <img src="{% static 'assets/img/media/10.jpg' %}" alt="" /> </a>
+                            </div>
+                            <div class="item">
+                                11
+                                <a href="#" target="_blank"> <img src="{% static 'assets/img/media/11.jpg' %}" alt="" /> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <!-- Pie Charts -->
+    <div class="row row-sm d-none">
+        <div class="col-sm-12 col-lg-12 col-xl-12">
+            <div class="card custom-card">
+                <!-- <div class="border-bottom-0 pb-0 pt-3">
+                    <label class="main-content-label" style="padding-left: 15px;">Definition of River</label>
+                </div> -->
+                <div class="card-body">
+                    <div class="row row-sm">
+                        <div class="col-md-12">
+                            <figure class="highcharts-figure">
+                                <div id="container"></div>
+                                <p class="highcharts-description">
+                                    All color options in Highcharts can be defined as gradients or patterns.
+                                    In this chart, a gradient fill is used for decorative effect in a pie
+                                    chart.
+                                </p>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row row-sm">
+        <div class="col-sm-12 col-lg-12 col-xl-12">
+            <div class="card custom-card">
+                <div class="card-body">
+                    <h4 class="text-center fw-semibold mt-3">Implementors and Partners</h4>
+                    <span class="d-block landing-title"></span>
+                    <div class="row mt-4">
+                        <!-- <div class="col-sm-12"> -->                            
+                            <div class="col-md my-auto">
+                                <div class="counter-icon text-center">
+                                    <img style="width:70px;" src="{% static 'images/ADB-02.png' %}">
+                                </div>
+                            </div>
+                            <div class="col-md my-auto">
+                                <div class="counter-icon text-center">
+                                    <img style="width:150px;" src="{% static 'images/JFPR-03.png' %}">
+                                </div>
+                            </div>
+                            <div class="col-md my-auto">
+                                <div class="counter-icon text-center">
+                                    <img style="width:130px;" src="{% static 'images/Japan-Gov-04.png' %}">
+                                </div>
+                            </div>
+                            <div class="col-md my-auto">
+                                <div class="counter-icon text-center">
+                                    <img style="width:80px;" src="{% static 'images/bd_govt.png' %}">
+                                </div>
+                            </div>
+                            <div class="col-md my-auto">
+                                <div class="counter-icon text-center">
+                                    <img style="width:130px;" src="{% static 'images/CHTRC-05.png' %}">
+                                </div>
+                            </div>
+                            <div class="col-md my-auto">
+                                <div class="counter-icon text-center">
+                                    <img style="width:120px;" src="{% static 'images/CEGIS_logo.png' %}">
+                                </div>
+                            </div>
+                        <!-- </div> -->
+                    </div>
+                    <!-- <div class="demo-screen-skin code-quality p-0" id="dependencies">
+                        <div class="text-center p-0">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-12 px-0">
+                                    <div class="feature-logos mt-3">
+                                        <div class="slide">
+                                            <a href="https://www.worldbank.org/en/home" target="_blank">
+                                                <img src="{% static 'images/World_Bank_Group_logo.png' %}">
+                                                <h6>WBG</h6>
+                                            </a>
+                                        </div>
+                                        <div class="slide">
+                                            <a href="https://www.aiib.org/en/index.html" target="_blank">
+                                                <img src="{% static 'images/AIIB_logo.png' %}">
+                                                <h6>AIIB</h6>
+                                            </a>
+                                        </div>
+                                        <div class="slide">
+                                            <a href="https://www.ebrd.com/home" target="_blank">
+                                                <img src="{% static 'images/EBRD-Logo.png' %}">
+                                                <h6>EBRD</h6>
+                                            </a>
+                                        </div>
+                                        <div class="slide">
+                                            <a href="https://www.caf.com/en/" target="_blank">
+                                                <img src="{% static 'images/CAF_logo.png' %}">
+                                                <h6>CAF</h6>
+                                            </a>
+                                        </div>
+                                        <div class="slide">
+                                            <a href="https://www.oecd.org/" target="_blank">
+                                                <img src="{% static 'images/OECD_logo.png' %}">
+                                                <h6>OECD</h6>
+                                            </a>
+                                        </div>
+                                        <div class="slide">
+                                            <a href="https://www.ndb.int/" target="_blank">
+                                                <img src="{% static 'images/NDB-logo.png' %}">
+                                                <h6>NDB</h6>
+                                            </a>
+                                        </div>
+                                        <div class="slide">
+                                            <a href="https://www.who.int/" target="_blank">
+                                                <img src="{% static 'images/who_logo.png' %}">
+                                                <h6>WHO</h6>
+                                            </a>
+                                        </div>
+                                        <div class="slide">
+                                            <a href="https://www.fao.org/home/en" target="_blank">
+                                                <img src="{% static 'images/fao-nu-logo.png' %}">
+                                                <h6>FAO</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Extra Large Modal border: 1px solid green;-->
+    <div class="modal fade" id="modalmajor">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content modal-content-demo" style="border-radius: 8px;">
+                <div class="modal-header">
+                    <h6 id="titlemodalmajor" class="modal-title">Rivers Information </h6>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body" style="overflow: auto;height: 70vh;width: 100%;">
+                    <div style="overflow-y: auto;" class="table-responsive" id="divTypeRiverSummary"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn ripple btn-danger" data-bs-dismiss="modal" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+// Data retrieved from https://www.ssb.no/en/transport-og-reiseliv/landtransport/statistikk/bilparken
+// Radialize the colors
+Highcharts.setOptions({
+    colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
+        return {
+            radialGradient: {
+                cx: 0.5,
+                cy: 0.3,
+                r: 0.7
+            },
+            stops: [
+                [0, color],
+                [1, Highcharts.color(color).brighten(-0.3).get('rgb')] // darken
+            ]
+        };
+    })
+});
+
+// Build the chart
+Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Registered private vehicles in Norway, by type of fuel, 2020',
+        align: 'left'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<span style="font-size: 1.2em"><b>{point.name}</b></span><br>' +
+                    '<span style="opacity: 0.6">{point.percentage:.1f} %</span>',
+                connectorColor: 'rgba(128,128,128,0.5)'
+            }
+        }
+    },
+    series: [{
+        name: 'Share',
+        data: [
+            { name: 'Petrol', y: 938899 },
+            { name: 'Diesel', y: 1229600 },
+            { name: 'Electricity', y: 325251 },
+            { name: 'Other', y: 238751 }
+        ]
+    }]
+});
+</script>
+
+
+
+
+{% endblock %}

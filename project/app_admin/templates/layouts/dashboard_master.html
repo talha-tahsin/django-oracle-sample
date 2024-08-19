@@ -1,0 +1,186 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token }}">
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link type="text/css" rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+
+        <!-- Font Awesome -->
+        <link type="text/css" rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}" />
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="{% static 'plugins/ionicons/dist/css/ionicons.min.css' %}">
+
+        <!-- theme css -->
+        <link href="{% static 'plugins/adminApp/adminlte.min.css' %}" rel="stylesheet" />
+        <link href="{% static 'plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}" rel="stylesheet"/>
+
+        <!-- dataTables -->
+        <link type="text/css" rel="stylesheet" href="{% static 'plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+        <link type="text/css" rel="stylesheet" href="{% static 'plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+        <link type="text/css" rel="stylesheet" href="{% static 'plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+
+        <!-- Select2 -->
+        <link type="text/css" href="{% static 'plugins/select2/select2.min.css' %}" rel="stylesheet" />
+        <link type="text/css" href="{% static 'plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' %}" rel="stylesheet" />
+        <!-- Sweet Alert -->
+        <link type="text/css" href="{% static 'plugins/sweetalert2/sweetalert2.min.css' %}" rel="stylesheet" />
+        <!-- Toastr -->
+        <link type="text/css" href="{% static 'plugins/toastr/toastr.min.css' %}" rel="stylesheet" />
+
+        <!-- Leaflet -->
+        <link type="text/css" href="{% static 'leaflet/leaflet.css' %}" rel="stylesheet" />
+        
+        <style>
+          body {
+            font-family: 'Cambria', sans-serif;
+          }
+          h3 {
+            font-family: 'Trebuchet MS', sans-serif;
+          }
+          button {
+              font-family: 'Cambria', sans-serif;
+          }
+          .preloader img {
+            width: 100px;
+            margin-bottom: 20px;
+            height: 100px;
+          }
+        </style>
+
+    </head>
+
+    <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+
+        
+<div class="wrapper">
+
+    <!-- Preloader -->
+    <div class="preloader flex-column justify-content-center align-items-center">
+      <img class="animation__shake" src="{% static 'dist/img/loading.gif' %}" alt="AdminLTELogo" height="60" width="60">
+    </div>
+  
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="{% url 'home' %}" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="#" class="nav-link">Contact</a>
+        </li>
+      </ul>
+  
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+
+        <!-- Authentication Links -->
+        <li class="nav-item dropdown">
+          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            <img src="{% static 'dist/img/444.png' %}" alt="log_out" height="20" width="20">
+            {{ user.username }}
+          </a>
+
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'logout' %}"
+                 onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                  logout
+              </a>
+
+              <form id="logout-form" action="{% url 'logout' %}" method="POST" class="d-none">
+                {% csrf_token %}
+              </form>
+          </div>
+      </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </a>
+        </li> -->
+        
+      </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    {% include 'layouts/sidebar.html' %}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+  
+      {% block content %} {% endblock content %}
+
+    </div>
+    <!-- /.content-wrapper -->
+
+      <footer class="main-footer">
+        <strong>Copyright &copy; 2024-2025 <a href="https://adminlte.io">CEGIS</a>.</strong>
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+            <!-- <b>Version</b> 3.2.0 -->
+        </div>
+      </footer>
+    
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+
+
+    <!-- jQuery -->
+    <script src="{% static 'jQuery/jquery-3.6.0.min.js' %}"></script>
+    <!-- bootstrap -->
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="{% static 'plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>$.widget.bridge('uibutton', $.ui.button)</script>
+
+    <!-- overlayScrollbars -->
+    <script src="{% static 'plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
+
+    <!-- AdminLTE App -->
+    <script src="{% static 'plugins/adminApp/adminlte.js' %}"></script>
+    
+    <!-- Select2 -->
+    <script src="{% static 'plugins/select2/select2.full.min.js' %}"></script>
+    <!-- Toastr -->
+    <script src="{% static 'plugins/toastr/toastr.min.js' %}"></script>
+    <!-- Sweet Alert -->
+    <script src="{% static 'plugins/sweetalert2/sweetalert2.min.js' %}"></script>
+
+    <!-- Leaflet -->
+    <script src="{% static 'leaflet/leaflet.js' %}"></script>
+
+    <!-- DataTables  & Plugins -->
+    <script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+
+
+    {% block current_page_scripts %} {% endblock current_page_scripts %}
+
+    </body>
+</html>

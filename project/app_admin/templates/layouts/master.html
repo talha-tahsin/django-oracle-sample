@@ -1,0 +1,604 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    {% load static %}
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'images/bd_govt.ico' %}" type="image/x-icon">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/bd_govt.ico' %}">
+    <link rel="icon" type="image/ico" href="{% static 'images/bd_govt.ico' %}" />
+    <link rel="apple-touch-icon" href="{% static 'images/bd_govt.ico' %}">
+
+    <!-- Title -->
+    <title>ADB :: WMIS</title>
+
+    <!-- Bootstrap CSS -->    
+    <link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+
+    <!-- Fontawesome -->    
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+    
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="{% static 'plugins/ionicons/dist/css/ionicons.min.css' %}">
+
+    <!-- Icons css-->
+    <link href="{% static 'assets/plugins/web-fonts/icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/plugins/web-fonts/font-awesome/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/web-fonts/plugin.css' %}" rel="stylesheet" />
+
+    <!-- Style css-->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+    <!-- Select2 css-->
+    <link href="{% static 'assets/plugins/select2/css/select2.min.css' %}" rel="stylesheet">
+    
+    <!-- Mutipleselect css-->
+    <link rel="stylesheet" href="{% static 'assets/plugins/multipleselect/multiple-select.css' %}">
+    
+    <!--- Internal Treeview -->
+    <link href="{% static 'assets/plugins/treeview/treeview.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Internal Prism css-->
+    <link href="{% static 'assets/plugins/prism/prism.css' %}" rel="stylesheet">
+
+    <!-- Internal Jquery.Coutdown css   -->
+    <link href="{% static 'assets/plugins/jquery-countdown/jquery.countdown.css' %}" rel="stylesheet">
+
+    <!-- Internal Sweet-Alert css-->
+    <link href="{% static 'assets/plugins/sweet-alert/sweetalert.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/toastr.css' %}" rel="stylesheet" rel="stylesheet" />
+
+
+    <style>
+        @media (min-width: 799px) {
+            .banner-text {
+                font-size: 1.53125rem
+            }
+        }
+
+        @media (max-width: 798px) {
+            .banner-text {
+                font-size: 0.8rem;
+                line-height: 1;
+            }
+        }
+    
+    </style>
+
+    <style>
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu .dropdown-menu {
+            top: 28px;        
+            margin-top: -1px;
+        }
+
+        .dropdown-item {        
+            background-color: transparent;
+        }
+
+        .dropdown-item.active {
+            color: #008b9b;
+            background-color: #dedede;
+            font-weight: bold;
+        }
+
+        @media (max-width: 991.98px){
+            .dropdown-item {     
+                background: transparent;   
+                color: #000;
+            }
+
+            .dropdown-submenu, .dropdown-menu {                            
+                background: transparent;
+                background-color: #fff;
+                padding: 8px;
+            }
+
+            .dropdown-menu {
+                left: 23px !important;            
+            }
+
+            .header-title {
+                color: #10667a !important;
+                font-size: 0.93rem !important;
+                text-align: center;
+            }
+
+            .dropdown-item:hover,
+            .dropdown-item:active {
+                color: rgba(255, 255, 255, 0.7);
+                text-decoration: none;
+                background: linear-gradient(rgb(2 153 141) 25%, rgb(1 88 76) 70%) 0px 0px repeat scroll rgba(181, 72, 72, 0);
+            }
+        }
+
+        .side-menu li:hover > ul.dropdown-menu {
+            display: block;
+        }
+    </style>
+
+    {% block style_content %}
+
+    {% endblock %}
+
+</head>
+
+<body class="app sidebar-mini ltr landing-page horizontalmenu">
+    <!-- Loader -->
+    <div id="global-loader">
+        <div class="loader-img text-center">
+            <div class="lds-dual-ring"></div>
+        </div>
+        <!-- <img src="~/assets/img/loader.svg" class="loader-img" alt="Loader"> -->
+    </div>
+    <!-- End Loader -->
+
+
+    <!-- Page -->
+    <div class="page">
+        <div class="page-main">
+
+            <!-- Main Header-->
+            <div class="main-header side-header hor-header">
+                <div class="main-container container-fluid">
+                    <div class="main-header-left">
+                        <a class="main-header-menu-icon" href="javascript:void(0)"
+                           id="mainSidebarToggle"><span></span></a>
+                        <div class="hor-logo">                            
+                            <a class="main-logo" href="#">
+                                <img src="{% static 'images/wmis-logo-t-w.png' %}" class="header-brand-img desktop-logo-dark" style="width: 170px; height:50px; border-left: 2px solid #fff; border-end-start-radius: 10px;" alt="logo" /> 
+                                <!-- <img src="{% static 'images/adb-logo-w.png' %}" class="header-brand-img desktop-logo-dark" style="width: 200px;" alt="logo" />                                 -->
+                                <!-- <span class="header-title2 mt-3" style="color:#fff; font-size: 2rem;">
+                                    WMIS
+                                </span> -->
+                            </a>
+                        </div>
+                    </div>
+                    <div class="main-header-center">
+                        <div class="responsive-logo">
+                            <a href="#">
+                                <img src="{% static 'images/wmis-logo-t-w.png' %}" class="header-brand-img desktop-logo-dark" style="width: 170px; height:50px; border-left: 2px solid #fff; border-end-start-radius: 10px;" alt="logo" /> 
+                                <!-- <img src="{% static 'images/adb-logo-w.png' %}" class="header-brand-img desktop-logo-dark" style="width: 200px;" alt="logo" />                                 -->
+                                <!-- <span class="header-title2 mt-3" style="color:#fff; font-size: 2rem;">
+                                    WMIS
+                                </span> -->
+                            </a>                            
+                        </div>
+                    </div>                    
+                    <div class="main-header-right">
+                        <button class="navbar-toggler navresponsive-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fe fe-more-vertical header-icons navbar-toggler-icon"></i>
+                        </button>   <!-- Navresponsive closed -->
+                        <div class="navbar navbar-expand-lg  nav nav-item  navbar-nav-right responsive-navbar navbar-dark  ">
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                                <div class="d-flex order-lg-2 ms-auto">
+                                    <!-- SEARCH -->
+                                    <div class="header-nav-right p-3">       
+                                        <a href="#" class="btn ripple btn-min w-sm btn-primary me-2" 
+                                           target="_blank">
+                                            Admin
+                                        </a>                                 
+                                        <a href="#" class="btn ripple btn-min w-sm btn-primary me-2"
+                                           target="_blank">
+                                            Login
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Main Header -->
+            
+            
+            <!-- landing header -->
+            <div class="landing-top-header">
+                <div class="top sticky">
+                    <!--APP-SIDEBAR-->
+                    <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
+                    <div class="app-sidebar bg-transparent">
+                        <div class="container">
+                            <div class="row">
+            
+                                <!-- Sidemenu -->
+                                <div class="main-sidemenu navbar px-0">
+                                    <a class="main-logo" href="#">
+                                        <img src="{% static 'images/wmis-logo-t-w.png' %}" class="header-brand-img desktop-logo-dark" style="width: 200px; border-left: 3px solid #8daf1f; border-top: 1px solid #262323; border-right: 1px solid #262323; border-end-start-radius: 10px; border-start-end-radius: 10px; background-color: #003e21; box-shadow: 4px -3px 3px -1px #141a1485;" alt="logo" /> <!-- border-top: 3px solid #2525252e;  -->
+                                        <!-- <img src="{% static 'images/adb-logo-w.png' %}" class="header-brand-img desktop-logo-dark" style="width: 300px;" alt="logo" />              -->
+                                    </a>
+                                    <!-- <div class="banner-label col-md" style="color:#d7a100; text-transform: uppercase; text-align:center;">
+                                        <label style="margin: 1px 5px 8px 0px; font-size: 1.2rem;">Watershed Management Information System (WMIS)</label>
+                                        <br>
+                                        <label style="margin: 1px 5px; font-size: 1.2rem;">Information System (WMIS)</label>
+                                    </div> -->
+                                    <div class="slide-left disabled" id="slide-left">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24"
+                                             viewBox="0 0 24 24">
+                                            <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z" />
+                                        </svg>
+                                    </div>
+                                    
+                                    
+                                    <ul class="side-menu">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+                                        <li class="slide ">
+                                                <a href="{% url 'home' %}" title="To view Dashboard" class="side-menu__item" data-bs-toggle="slide">
+                                                <span class="side-menu__label">Home</span>
+                                            </a>                        
+                                        </li>
+                                
+                                        <li class="slide dropdown-submenu">
+                                            <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle" style="display: inline;">Watershed Information</a>
+                                            <ul class="dropdown-menu">                        
+                                                <li>
+                                                    <a href="{% url 'factsheets' %}" class="dropdown-item">Factsheets</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{% url 'show_mapview' %}" class="dropdown-item">Map Viewer</a>
+                                                </li>                                                                      
+                                            </ul>
+                                        </li>
+
+                                        <li class="slide dropdown-submenu">
+                                            <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle" style="display: inline;">Watershed Monitoring</a>
+                                            <ul class="dropdown-menu">                        
+                                                <li>
+                                                    <a href="{% url 'watershed_health' %}" class="dropdown-item">Watershed Health</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{% url 'climate_resilience' %}" class="dropdown-item">Climate Resilience</a>
+                                                </li>                                                                      
+                                            </ul>
+                                        </li>                                        
+
+                                        <li class="slide dropdown-submenu">
+                                            <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle" style="display: inline;">Capacity Building</a>
+                                            <ul class="dropdown-menu">                        
+                                                <li>
+                                                    <a href="{% url 'demonstration' %}" class="dropdown-item">Demonstration</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{% url 'training' %}" class="dropdown-item">Training</a>
+                                                </li>                                                                      
+                                            </ul>
+                                        </li>
+
+                                        <li class="slide ">
+                                            <a href="{% url 'value_chain' %}" title="Value Chain and Business Model" class="side-menu__item" data-bs-toggle="slide">
+                                                <span class="side-menu__label">Value Chain</span>
+                                            </a>
+                                        </li>
+                                        
+                                        <li class="slide ">
+                                            <a href="{% url 'documents' %}" title="Value Chain and Business Model" class="side-menu__item" data-bs-toggle="slide">
+                                                <span class="side-menu__label">Documents</span>
+                                            </a>
+                                        </li>
+                                        
+                                        <!-- <li class="slide dropdown-submenu">
+                                            <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle" style="display: inline;">Documents</a>
+                                            <ul class="dropdown-menu">   
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Important Links</a>
+                                                </li>                     
+                                                <li>
+                                                    <a href="#" class="dropdown-item">User Manual</a>
+                                                </li>                                                                                                                   
+                                            </ul>
+                                        </li> -->
+
+                                        <li class="slide dropdown-submenu">
+                                            <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle" style="display: inline;">About CRLIWM-CHT</a>
+                                            <ul class="dropdown-menu">                        
+                                                <li>
+                                                    <a href="{% url 'overview' %}" class="dropdown-item">Overview</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{% url 'news_events_list' %}" class="dropdown-item">News & Events</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{% url 'success_stories' %}" class="dropdown-item">Success Stories</a>
+                                                </li>                                                                      
+                                            </ul>
+                                        </li>
+                                        <li class="slide ">
+                                            <a href="#" class="side-menu__item" data-bs-toggle="slide">
+                                                <span class="side-menu__label">Login</span>
+                                            </a>
+                                        </li>
+
+
+                                        <!-- <li class="slide">
+                                            <a href="#" class="side-menu__item loginpage" data-bs-toggle="slide">
+                                                <span class="side-menu__label">Login</span>
+                                            </a>
+                                        </li>                                 -->
+                                
+                                    </ul>
+
+                                     
+                                        
+                                    <div class="slide-right" id="slide-right">                                        
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">
+                                            <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z" />
+                                        </svg>
+                                    </div>
+                                
+                                    <div class="header-nav-right d-lg-block">   
+                                        
+                                        <!-- Profile -->
+                                        <!-- <div class="dropdown main-profile-menu">
+                                            <a class="d-flex" href="javascript:void(0)">
+                                                <span class="main-img-user"><img alt="avatar"
+                                                        src="{% static 'assets/img/users/1.jpg' %}"></span>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <div class="header-navheading">
+                                                    <h6 class="main-notification-title">Sonia Taylor</h6>
+                                                    <p class="main-notification-text">Web Designer</p>
+                                                </div>
+                                                <a class="dropdown-item border-top" href="#">
+                                                    <i class="fe fe-user"></i> Change Password
+                                                </a>
+                                                <a class="dropdown-item" href="profile.html">
+                                                    <i class="fe fe-edit"></i> User Registration
+                                                </a>
+                                                <a class="dropdown-item" href="profile.html">
+                                                    <i class="fe fe-settings"></i> Manage User
+                                                </a>
+                                                <a class="dropdown-item" href="profile.html">
+                                                    <i class="fe fe-settings"></i> Manage User Roles
+                                                </a>                                                
+                                                <a class="dropdown-item" href="signin.html">
+                                                    <i class="fe fe-power"></i> Log Out
+                                                </a>
+                                            </div>
+                                        </div> -->
+                                        <!-- Profile -->
+
+
+
+
+                                        <!-- <a href="#" class="btn ripple btn-min w-sm btn-success" style="position: fixed; top: 50px; right: 61px; border: 1px solid #001a26; background: linear-gradient(rgb(0 118 109) 25%, rgb(0 72 62) 70%) 0px 0px repeat scroll rgba(181, 72, 72, 0);">Admin</a> 
+                                        <a href="#" class="btn ripple btn-min w-sm btn-success" style="position: fixed; top: 50px; right: 1px; border: 1px solid #001a26; background: linear-gradient(rgb(0 118 109) 25%, rgb(0 72 62) 70%) 0px 0px repeat scroll rgba(181, 72, 72, 0);">Login</a>    -->
+                                    </div>
+                                </div>
+                                <!-- End Sidemenu -->            
+                            </div>
+                        </div>                           
+                    </div>
+                    <!--/APP-SIDEBAR-->
+                </div>                
+            </div>
+            <!-- End landing header -->
+
+
+            <!-- app-content open -->
+            <div class="main-content mt-0">
+                <div class="side-app">
+                    <div class="inner-body" style="min-height: 550px;">
+                        
+                        {% block content %}
+
+                        {% endblock %}
+
+                    </div>
+                </div>
+            </div>
+            <!-- app-content closed -->
+
+        </div>
+
+        <div class="pos-relative">
+            <div class="shape overflow-hidden bottom-footer-shape">
+                <svg viewBox="0 0 2880 48" fill="none" xmsns="http://www.w3.org/2000/svg">
+                    <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="#002415"></path>
+                </svg>
+            </div>
+        </div>
+
+        <!-- FOOTER OPEN -->
+        <div class="demo-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="card mb-0" style="box-shadow:none; border: none;">
+                        <div class="card-body p-0">
+                            <div class="top-footer p-4">
+                                <div class="row">
+                                    <div class="col-lg-6 col-sm-12 col-md-12 reveal revealleft">
+                                        <h6>About</h6>
+                                        <p>
+                                            The Asian Development Bank (ADB) is committed to achieving a prosperous, inclusive, resilient, and sustainable Asia and the Pacific, while sustaining its efforts to eradicate extreme poverty. It assists its members and partners by providing loans, technical assistance, grants, and equity investments to promote social and economic development.
+                                        </p>                                        
+                                    </div>
+                                    <div class="col-lg-2 col-sm-6 col-md-4 reveal revealleft">
+                                        <h6>Pages</h6>
+                                        <ul class="mb-5 mb-lg-0 ps-0">
+                                            <li><a href="{% url 'home' %}">Dashboard</a></li>
+                                            <li><a href="#">Map Viewer</a></li>                                                                                  
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-2 col-sm-6 col-md-4 reveal revealleft">
+                                        <h6>Information</h6>
+                                        <ul class="mb-5 mb-lg-0 ps-0">                                            
+                                            <li><a href="#">Contact & Feedback</a></li>
+                                            <li><a href="#">About</a></li>
+                                            <li><a href="#">Services</a></li>                                            
+                                            <li><a href="#">Terms and Services</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-2 col-sm-12 col-md-4 reveal revealleft">                                        
+                                        <div class="btn-list mt-6">
+                                            <button type="button" class="btn btn-icon rounded-pill">
+                                                <i class="fe fe-facebook"></i>
+                                            </button>                                            
+                                            <button type="button" class="btn btn-icon rounded-pill">
+                                                <i class="fe fe-twitter"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-icon rounded-pill">
+                                                <i class="fe fe-instagram"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="mb-0">
+                            <footer class="main-footer px-0 text-center">
+                                <div class="row ">
+                                    <div class="col-md-12 col-sm-12">
+                                        Copyright © <span id="year"></span> <strong><a href="https://www.adb.org/" target="_blank" style="color: #019f5e;">ADB</a></strong> | All rights reserved. Designed by <strong><a href="https://www.cegisbd.com/" target="_blank"><img src="{% static 'images/CEGIS_logo.png' %}" alt="CEGIS" style="width: 50px; filter: brightness(150%);" /></a></strong></span>                                        
+                                    </div>
+                                </div>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FOOTER CLOSED -->
+
+    </div>
+    <!-- End Page -->
+
+
+    <!-- Back-to-top -->
+    <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- Jquery js-->
+    <script src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap js-->
+    <script src="{% static 'assets/plugins/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- Internal Chart.Bundle js-->
+    <script src="{% static 'assets/plugins/chart.js/Chart.bundle.min.js' %}"></script>
+
+    <!-- Peity js-->
+    <script src="{% static 'assets/plugins/peity/jquery.peity.min.js' %}"></script>
+
+    <!-- Select2 js-->
+    <script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
+    <script src="{% static 'assets/js/select2.js' %}"></script>
+
+    <!-- Perfect-scrollbar js -->
+    <script src="{% static 'assets/plugins/owl-carousel/owl.carousel.js' %}"></script>
+    <script src="{% static 'assets/landing/lib/company-slider/slider.js' %}"></script>
+    <script src="{% static 'assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+
+    <!-- Multislider js -->
+    <script src="{% static 'assets/plugins/multislider/multislider.js' %}"></script>
+    <script src="{% static 'assets/js/carousel.js' %}"></script>
+    
+    <!-- Sidemenu js -->
+    <script src="{% static 'assets/landing/js/sidemenu.js' %}"></script>
+
+    <!-- Sidebar js -->
+	<script src="{% static 'assets/plugins/sidebar/sidebar.js' %}"></script>
+        
+    <!-- Circle Progress js-->
+    <script src="{% static 'assets/js/circle-progress.min.js' %}"></script>
+    <script src="{% static 'assets/js/chart-circle.js' %}"></script>
+
+    <!-- Internal Apexchart js-->
+    <script src="{% static 'assets/js/apexcharts.js' %}"></script>
+
+    <!-- Internal Dashboard js-->
+    <script src="{% static 'assets/js/index.js' %}"></script>
+    <!-- <script src="{% static 'assets/js/ecommerce-dashboard.js' %}"></script> -->
+
+
+    <!-- Color Theme js -->
+    <script src="{% static 'assets/js/themeColors.js' %}"></script>
+
+    <!-- Sticky js -->
+    <script src="{% static 'assets/js/sticky.js' %}"></script>
+
+    <!-- Internal Tooltip js-->
+    <script src="{% static 'assets/js/tooltip.js' %}"></script>
+
+     <!--- TABS JS -->
+    <script src="{% static 'assets/plugins/tabs/jquery.multipurpose_tabcontent.js' %}"></script>
+    <script src="{% static 'assets/plugins/tabs/tab-content.js' %}"></script>
+
+    <!-- Star Rating Js-->
+    <script src="{% static 'assets/plugins/rating/jquery-rate-picker.js' %}"></script>
+    <script src="{% static 'assets/plugins/rating/rating-picker.js' %}"></script>
+
+    <!-- Star Rating-1 Js-->
+    <script src="{% static 'assets/plugins/ratings-2/jquery.star-rating.js' %}"></script>
+    <script src="{% static 'assets/plugins/ratings-2/star-rating.js' %}"></script>
+
+
+    <!--- Internal Treeview js -->
+    <script src="{% static 'assets/plugins/treeview/treeview.js' %}"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script src="{% static 'assets/landing/js/landing.js' %}"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>   
+    
+    <script src="{% static 'assets/plugins/toastr/toastr.min.js' %}"></script>
+    <script type="text/javascript">
+        function Swal(title, message, icon) {
+            swal.fire({
+            title: title,
+            text: message,
+            icon: icon
+            });
+        }
+    </script>
+    
+
+    {% block script_content %}
+
+    {% endblock %}
+
+
+    <!-- {%
+        if (TempData["Message"] != null && (string)TempData["Message"] != "")
+        {
+            NotificationMessage nm = JsonConvert.DeserializeObject<NotificationMessage>(TempData["Message"].ToString()); 
+            var message = nm.message;
+            var title = nm.title;
+            var icon = nm.icon;
+            var type = nm.Ntype;
+            var provider = nm.provider;
+    
+            <script type="text/javascript">
+                        if ('@provider' == "sweetAlert") {
+                            swal.fire({
+                                title: '@title',
+                                text: '@message',
+                                icon: '@icon'
+                            });
+                        } else {
+                            toastr['@type']('@message', '@title');
+                        }
+            </script>
+        }
+    %} -->
+
+</body>
+
+</html>

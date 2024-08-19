@@ -1,0 +1,146 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <meta name="csrf-token" content="{{ csrf_token }}">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link type="text/css" rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+      
+      <!-- Leaflet -->
+      <link type="text/css" href="{% static 'leaflet/leaflet.css' %}" rel="stylesheet" />
+        
+    </head>
+
+    <body>
+
+      <div class="container z-index-sticky top-0">
+        <div class="row">
+          <div class="col-12">
+        
+            <nav class="navbar navbar-expand-lg blur border-radius-lg top-0 z-index-3 shadow position-absolute mt-4 py-2 start-0 end-0 mx-4">
+              <div class="container-fluid">
+                <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="../pages/dashboard.html">WMiS</a>
+                <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon mt-2">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                  </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navigation">
+                  <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                      <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="{% url 'welcome' %}">
+                        <i class="fa fa-chart-pie opacity-6 text-dark me-1" aria-hidden="true"></i>Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Show Map
+                      </a>
+                      
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="dynamic_checkbox">
+                        <!-- <a class="dropdown-item" href="#">
+                          <input class="form-check-input" type="checkbox" value="1" id="dvisionMap"> Division View
+                        </a> -->
+                        <!-- <a class="dropdown-item" href="#">
+                          <input class="form-check-input" type="checkbox" value="2" id="districtMapView"> District View
+                        </a>
+                        <a class="dropdown-item" href="#">
+                          <input class="form-check-input" type="checkbox" value="3" id="upazilaMap"> Upazila View
+                        </a> -->
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link me-2" href="{% url 'map_view' %}">
+                      <i class="fa fa-user opacity-6 text-dark me-1" aria-hidden="true"></i>
+                      View Map
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link me-2" href="../pages/sign-up.html">
+                    <i class="fas fa-user-circle opacity-6 text-dark me-1" aria-hidden="true"></i>
+                    District Map
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link me-2" href="../pages/sign-in.html">
+                    <i class="fas fa-key opacity-6 text-dark me-1" aria-hidden="true"></i>
+                    Contact
+                    </a>
+                    </li>
+                  </ul>
+                  <ul class="navbar-nav d-lg-block d-none">
+                    <li class="nav-item">
+              
+                      {% if user.is_authenticated %}
+                        <!-- Dropdown for logout button -->
+                        <div class="dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <strong>{{ user.username }}</strong>
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <!-- Logout button -->
+                              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                          </div>
+                        </div>
+                      {% else %}
+                        <span><a href="{% url 'login' %}" class="btn btn-sm mb-0 me-1 btn-primary">Login</a></span>
+                      {% endif %}
+            
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row" id="setMap"> 
+        <div class="col-md-2"></div>
+        <!-- <div id="initial" class="col-md-8" style="margin: 100px 0px 0px 20px;height: 800px;"></div> -->
+        <div id="map" class="col-md-8" style="margin: 100px 0px 0px 20px;height: 800px;"></div>
+      </div>
+
+        
+<!-- jQuery -->
+<script src="{% static 'jQuery/jquery-3.6.0.min.js' %}"></script>
+<!-- bootstrap -->
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<!-- Leaflet -->
+<script src="{% static 'leaflet/leaflet.js' %}"></script>
+
+<script src="{% static 'scripts/welcome.js' %}"></script>
+
+<script>
+
+  document.title = 'welcome';
+          
+  $(document).ready(function () {
+
+    console.log("developed by talha || ");
+
+    var userNm = $('#userName').val();
+    var token = $("meta[name='csrf-token']").attr("content");
+
+
+  });
+
+
+
+</script>
+       
+
+  </body>
+</html>
